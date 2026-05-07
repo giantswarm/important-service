@@ -9,6 +9,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [0.2.6] - 2026-05-07
 
+### Changed
+
+- Add support for linux/arm64
+
 ## [0.2.5] - 2026-05-07
 
 ### Fixed

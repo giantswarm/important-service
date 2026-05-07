@@ -9,6 +9,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [0.2.5] - 2026-05-07
 
+### Fixed
+
+- Bumped image tag to an existing one
+
 ## [0.2.4] - 2026-03-18
 
 ### Fixed

@@ -16,6 +16,20 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
   deprecated in orb 6.8.0 when chart pushes moved to `gsoci`, and is gone from 9.x. 9.6.0 is the
   version already in use by `coredns-app`, `external-dns-app` and `kyverno-policies-dx`.
 
+### Fixed
+
+- Point the readiness probe at `/healthz` instead of `/readyz`, and stop pinning an unreleased
+  `helloworld` dev image. `/readyz` only ever existed in the still-draft
+  [helloworld#151](https://github.com/giantswarm/helloworld/pull/151); released `helloworld` serves
+  `/`, `/metrics`, `/healthz` and `/echo`, so the probe 404'd and pods never became Ready. On top of
+  that, the pinned tag `0.5.0-2926c5bb67b99209ca7f94bfc65b32ad5f2d461e` has since been garbage
+  collected from `gsoci` (404 -- no `0.5.0-*` tag remains), so the image could not be pulled at all.
+  Together these made `run-tests-with-ats` fail on every build. `image.tag` is now empty so it tracks
+  `appVersion`, which moves from the long-stale `0.3.0` to the current release `0.7.0`.
+  The `heartbeat` values and the `HEARTBEAT_URL` env var are left in place: they are inert against
+  released `helloworld` and cost nothing, and keep the door open for a reworked heartbeat PR that
+  does not make the variable mandatory.
+
 ## [0.2.6] - 2026-05-07
 
 ### Changed

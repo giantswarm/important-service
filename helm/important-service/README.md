@@ -19,7 +19,7 @@ An application to demonstrate workload deployment at Giant Swarm
 | image.registry | string | `"gsoci.azurecr.io"` | Container image registry |
 | image.name | string | `"giantswarm/helloworld"` | Container image repository |
 | image.pullPolicy | string | `"IfNotPresent"` | This sets the pull policy for images. |
-| image.tag | string | `"0.4.0-29797f4b96d795a4126f6dc8f826861a4a5a789e"` | Overrides the image tag whose default is the chart appVersion. |
+| image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion. |
 | imagePullSecrets | list | `[]` | This is for the secretes for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/ |
 | nameOverride | string | `""` | This is to override the chart name. |
 | fullnameOverride | string | `""` | Override the full name of the chart |

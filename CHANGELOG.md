@@ -24,8 +24,12 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
   `/`, `/metrics`, `/healthz` and `/echo`, so the probe 404'd and pods never became Ready. On top of
   that, the pinned tag `0.5.0-2926c5bb67b99209ca7f94bfc65b32ad5f2d461e` has since been garbage
   collected from `gsoci` (404 -- no `0.5.0-*` tag remains), so the image could not be pulled at all.
-  Together these made `run-tests-with-ats` fail on every build. `image.tag` is now empty so it tracks
-  `appVersion`, which moves from the long-stale `0.3.0` to the current release `0.7.0`.
+  Together these made `run-tests-with-ats` fail on every build. `image.tag` is now pinned to the current
+  release `0.7.0`, and `appVersion` moves from the long-stale `0.3.0` to `0.7.0` to match.
+  `image.tag` must stay set explicitly and cannot be left empty to track `appVersion`: this chart ships
+  a *third-party* image, and the release tooling rewrites `appVersion` to this repository's own dev
+  version when it packages the chart, so an empty tag resolves to
+  `helloworld:<important-service dev version>` and lands in `ImagePullBackOff`.
   The `heartbeat` values and the `HEARTBEAT_URL` env var are left in place: they are inert against
   released `helloworld` and cost nothing, and keep the door open for a reworked heartbeat PR that
   does not make the variable mandatory.

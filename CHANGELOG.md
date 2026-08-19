@@ -7,6 +7,15 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Changed
+
+- Bump the `architect` CircleCI orb from 6.14.1 to 9.6.0. The 6.x `push-to-app-catalog` job still
+  authenticates to `giantswarmpublic.azurecr.io`, which no longer resolves (NXDOMAIN), so
+  `push-to-catalog` fails on every build with
+  `Error: authenticating to "giantswarmpublic.azurecr.io": ... no such host`. That step was marked
+  deprecated in orb 6.8.0 when chart pushes moved to `gsoci`, and is gone from 9.x. 9.6.0 is the
+  version already in use by `coredns-app`, `external-dns-app` and `kyverno-policies-dx`.
+
 ## [0.2.6] - 2026-05-07
 
 ### Changed

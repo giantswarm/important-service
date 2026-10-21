@@ -9,6 +9,7 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ### Changed
 
+- The release workflows authenticate as the `giantswarm-release` GitHub App instead of the shared taylorbot account (giantswarm/giantswarm#2280).
 - Bump the `architect` CircleCI orb from 6.14.1 to 9.6.0. The 6.x `push-to-app-catalog` job still
   authenticates to `giantswarmpublic.azurecr.io`, which no longer resolves (NXDOMAIN), so
   `push-to-catalog` fails on every build with

@@ -10,12 +10,14 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 ### Changed
 
 - The release workflows authenticate as the `giantswarm-release` GitHub App instead of the shared taylorbot account (giantswarm/giantswarm#2280).
-- Bump the `architect` CircleCI orb from 6.14.1 to 9.6.0. The 6.x `push-to-app-catalog` job still
+- Bump the `architect` CircleCI orb from 6.14.1 to 10.16.7. The 6.x `push-to-app-catalog` job still
   authenticates to `giantswarmpublic.azurecr.io`, which no longer resolves (NXDOMAIN), so
   `push-to-catalog` fails on every build with
   `Error: authenticating to "giantswarmpublic.azurecr.io": ... no such host`. That step was marked
-  deprecated in orb 6.8.0 when chart pushes moved to `gsoci`, and is gone from 9.x. 9.6.0 is the
-  version already in use by `coredns-app`, `external-dns-app` and `kyverno-policies-dx`.
+  deprecated in orb 6.8.0 when chart pushes moved to `gsoci`, and is gone from 9.x. 10.16.7 pushes the
+  chart to the git catalog with the architect GitHub App instead of the `catalogbot` account, sends a
+  pre-release tag (`v1.2.3-rc.1`) to the test catalog only, and posts the published chart version as a
+  pull request comment.
 
 ### Fixed
 
